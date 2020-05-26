@@ -19,4 +19,10 @@ public class UserService {
         User user = userRepository.findById(id);
         return user;
     }
+
+    public User getUserBySurname(String surname) {
+        User user = userRepository.findBySurname(surname);
+
+        return user;
+    }
 }
