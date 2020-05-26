@@ -17,15 +17,14 @@ public class Card {
     private int energy;
     private int attack;
     private int defence;
-
-    @Column(name="imgUrl")
     private String imgUrl;
+    private boolean onSale;
 
     public Card() {
 
     }
 
-    public Card(int id, String name, String description, String family, int hp, int energy, int attack, int defence, String imgUrl) {
+    public Card(int id, String name, String description, String family, int hp, int energy, int attack, int defence, String imgUrl, boolean onSale) {
         super();
         this.id = id;
         this.name = name;
@@ -36,6 +35,7 @@ public class Card {
         this.attack = attack;
         this.defence = defence;
         this.imgUrl = imgUrl;
+        this.onSale = onSale;
     }
 
     public Integer getId() {
@@ -108,5 +108,13 @@ public class Card {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public boolean getOnSale() {
+        return onSale;
+    }
+
+    public void setOnSale(boolean onSale) {
+        this.onSale = onSale;
     }
 }
