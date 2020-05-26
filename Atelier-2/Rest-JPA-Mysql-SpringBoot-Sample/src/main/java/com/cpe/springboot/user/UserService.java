@@ -20,7 +20,7 @@ public class UserService {
     }
 
     public User getUserById(int id) {
-        Optional<User> userOpt = Optional.ofNullable(userRepository.findById(id));
+        Optional<User> userOpt = userRepository.findById(id);
 
         if (userOpt.isPresent()) {
             return userOpt.get();
