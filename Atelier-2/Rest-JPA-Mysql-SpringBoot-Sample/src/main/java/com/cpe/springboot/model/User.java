@@ -50,11 +50,12 @@ public class User {
         this.surname = surname;
     }
 
-    public String getPassword() {
+    public String getHashPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setHashPassword(String hashPassword) {
+        this.password = hashPassword;
     }
+
 }

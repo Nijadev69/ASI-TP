@@ -26,3 +26,7 @@ body{
 .overflowHiden{
     overflow:  auto;
 }
+
+#error {
+    font-size: 1.3em;
+}
