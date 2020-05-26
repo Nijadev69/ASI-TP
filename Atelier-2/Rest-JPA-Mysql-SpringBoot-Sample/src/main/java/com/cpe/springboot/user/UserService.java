@@ -12,13 +12,11 @@ public class UserService {
 
     public User addUser(User user) {
         User addedUser = userRepository.save(user);
-
         return addedUser;
     }
 
     public User getUserById(int id) {
         User user = userRepository.findById(id);
-
         return user;
     }
 }
