@@ -11,8 +11,7 @@ $(document ).ready(function(){
         //TO DO
     });    
     $("#buyButtonId").click(function(){
-        alert("Buy button clicked ");
-        //TO DO
+        window.location.href = '/visual/cardOnSale.html';
     });    
     $("#sellButtonId").click(function(){
         alert("Sell button clicked ");
