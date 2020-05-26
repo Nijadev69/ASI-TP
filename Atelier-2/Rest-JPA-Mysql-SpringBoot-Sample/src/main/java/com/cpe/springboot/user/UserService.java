@@ -1,8 +1,11 @@
 package com.cpe.springboot.user;
 
+import com.cpe.springboot.model.Card;
 import com.cpe.springboot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -12,16 +15,27 @@ public class UserService {
 
     public User addUser(User user) {
         User addedUser = userRepository.save(user);
+
         return addedUser;
     }
 
     public User getUserById(int id) {
-        User user = userRepository.findById(id);
-        return user;
+        Optional<User> userOpt = Optional.ofNullable(userRepository.findById(id));
+
+        if (userOpt.isPresent()) {
+            return userOpt.get();
+        }else {
+            return null;
+        }
     }
 
     public User getUserBySurname(String surname) {
-        User user = userRepository.findBySurname(surname);
-        return user;
+        Optional<User> userOpt = Optional.ofNullable(userRepository.findBySurname(surname));
+
+        if (userOpt.isPresent()) {
+            return userOpt.get();
+        }else {
+            return null;
+        }
     }
 }
