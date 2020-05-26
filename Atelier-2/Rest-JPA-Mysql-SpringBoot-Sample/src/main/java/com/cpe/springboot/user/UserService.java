@@ -20,7 +20,7 @@ public class UserService {
     }
 
     public User getUserById(int id) {
-        Optional<User> userOpt = Optional.ofNullable(userRepository.findById(id));
+        Optional<User> userOpt = userRepository.findById(id);
 
         if (userOpt.isPresent()) {
             return userOpt.get();
@@ -30,7 +30,7 @@ public class UserService {
     }
 
     public User getUserBySurname(String surname) {
-        Optional<User> userOpt = Optional.ofNullable(userRepository.findBySurname(surname));
+        Optional<User> userOpt = userRepository.findBySurname(surname);
 
         if (userOpt.isPresent()) {
             return userOpt.get();
