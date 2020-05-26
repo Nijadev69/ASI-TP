@@ -17,9 +17,11 @@ public class Card {
     private int energy;
     private int attack;
     private int defence;
-
-    @Column(name="imgUrl")
     private String imgUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "user_id", nullable = true)
+    private User user;
 
     public Card() {
 
