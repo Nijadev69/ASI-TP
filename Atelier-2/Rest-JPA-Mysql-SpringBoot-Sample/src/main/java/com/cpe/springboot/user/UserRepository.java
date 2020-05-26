@@ -1,4 +1,8 @@
 package com.cpe.springboot.user;
 
-public class UserRepository {
+import com.cpe.springboot.model.User;
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserRepository extends CrudRepository<User, Integer> {
+    User findBySurname(String surname);
 }
