@@ -1,8 +1,6 @@
 package com.cpe.springboot.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Card {
@@ -11,12 +9,16 @@ public class Card {
     @GeneratedValue
     private Integer id;
     private String name;
+
+    @Lob
     private String description;
     private String family;
     private int hp;
     private int energy;
     private int attack;
     private int defence;
+
+    @Column(name="imgUrl")
     private String imgUrl;
 
     public Card() {
