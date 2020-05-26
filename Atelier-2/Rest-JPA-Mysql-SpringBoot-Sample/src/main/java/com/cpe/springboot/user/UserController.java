@@ -20,17 +20,20 @@ public class UserController {
     @RequestMapping(method= RequestMethod.POST,value="/user")
     public ResponseEntity addUser(@RequestBody UserDTO userDTO) throws NoSuchAlgorithmException {
         User user = new User();
+
         BeanUtils.copyProperties(userDTO, user);
         user.setHashPassword(Utils.hashPassword(userDTO.getPassword()));
+
         uService.addUser(user);
         return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping(method= RequestMethod.POST, value="/user/connect")
-    public JsonResponse getUser(@RequestBody LoginForm loginForm) {
+    public JsonResponse getUser(@RequestBody LoginForm loginForm) throws NoSuchAlgorithmException {
         User u=uService.getUserBySurname(loginForm.getSurname());
         JsonResponse res;
-        if(u.getHashPassword().equals(loginForm.getPassword())){
+
+        if(u.getHashPassword().equals(Utils.hashPassword(loginForm.getPassword()))){
             res = new JsonResponse(false, "Authentication succeed");
             res.addData("userId", u.getId());
             res.addData("surname", u.getSurname());

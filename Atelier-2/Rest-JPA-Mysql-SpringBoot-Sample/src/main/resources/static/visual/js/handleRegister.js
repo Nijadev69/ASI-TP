@@ -29,6 +29,7 @@ $(document).ready(function() {
                     console.log(data);
                     $('#error').css("color", "green");
                     $('#error').html("L'utilisateur a bien été enregistré en base de données.");
+                    window.location.href = '/visual/login.html';
                 }
             });
         }
