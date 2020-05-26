@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class CardController {
 
@@ -16,7 +18,22 @@ public class CardController {
     @RequestMapping(method= RequestMethod.GET,value="/card/{id}")
     public Card getCard(@PathVariable String id) {
         Card c = cService.getCard(Integer.valueOf(id));
+
         return c;
+    }
+
+    @RequestMapping(method= RequestMethod.GET,value="/cardName/{name}")
+    public Card getCardByName(@PathVariable String name) {
+        Card c = cService.getCardByName(name);
+
+        return c;
+    }
+
+    @RequestMapping(method= RequestMethod.GET,value="/cards")
+    public List<Card> getCards() {
+        List<Card> lC = cService.getCards();
+
+        return lC;
     }
 
 }

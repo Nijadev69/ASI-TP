@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CardRepository extends CrudRepository<Card, Integer> {
-    public List<Card> findByName(String name);
+    public Optional<Card> findByName(String name);
     public Optional<Card> findById(int id);
+    public List<Card> findAll();
 }

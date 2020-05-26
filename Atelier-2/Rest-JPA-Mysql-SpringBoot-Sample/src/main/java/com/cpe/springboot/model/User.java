@@ -58,4 +58,14 @@ public class User {
         this.password = hashPassword;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
 }
