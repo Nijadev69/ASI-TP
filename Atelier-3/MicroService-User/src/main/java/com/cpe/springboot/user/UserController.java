@@ -21,8 +21,7 @@ public class UserController {
      * Fonction permettant d'enregistrer un nouvel utilisateur en base de données
      */
     @RequestMapping(method= RequestMethod.POST,value="/add")
-    public ResponseEntity addUser(@RequestBody String name) {
-        User user = new User(name);
+    public ResponseEntity addUser(@RequestBody User user) {
         uService.addUser(user);
         return new ResponseEntity(HttpStatus.OK);
     }
