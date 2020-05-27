@@ -33,6 +33,11 @@ public class CardService {
         }
     }
 
+    //Récupère les cartes d'un utilisateur
+    public List<Card> getCardsByUserId(int id) {
+        return cRepository.findByUserId(id);
+    }
+
     //Récupère les cartes dans la BD
     public List<Card> getCards() {
         return cRepository.findAll();

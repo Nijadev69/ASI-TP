@@ -43,7 +43,7 @@ public class CardController {
 
     //Vend une carte
     @RequestMapping(method= RequestMethod.PATCH,value="/sell/{name}")
-    public ResponseEntity getCards(@PathVariable String name) {
+    public ResponseEntity sellCards(@PathVariable String name) {
         Card card = cService.getCardByName(name);
 
         card.setOnSale(true);
@@ -63,5 +63,11 @@ public class CardController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    //get carte selon userId url = "/cards/" + JSON.parse(sessionStorage.getItem('user')).id + "/list";
+    //Route d'accès aux cartes d'un utilisateur
+    @RequestMapping(method= RequestMethod.GET,value="/cards/{id}/list")
+    public List<Card> getUserCards(@PathVariable int id) {
+        List<Card> lC = cService.getCardsByUserId(id);
+
+        return lC;
+    }
 }
