@@ -121,4 +121,20 @@ public class Card {
     public void setOnSale(boolean onSale) {
         this.onSale = onSale;
     }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", family='" + family + '\'' +
+                ", hp=" + hp +
+                ", energy=" + energy +
+                ", attack=" + attack +
+                ", defence=" + defence +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", onSale=" + onSale +
+                '}';
+    }
 }

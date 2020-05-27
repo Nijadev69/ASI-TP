@@ -39,11 +39,13 @@ public class CardController {
     }
 
     @RequestMapping(method= RequestMethod.PATCH,value="/card/{name}/sell")
-    public Card getCards(@PathVariable String name) {
+    public ResponseEntity getCards(@PathVariable String name) {
         Card card = cService.getCardByName(name);
-        card.setOnSale(true);
 
-        return card;
+        card.setOnSale(true);
+        cService.updateCard(card);
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping(method= RequestMethod.PATCH,value="/buyCard/{name}")
