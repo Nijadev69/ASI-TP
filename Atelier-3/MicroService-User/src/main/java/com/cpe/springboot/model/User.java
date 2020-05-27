@@ -9,21 +9,14 @@ public class User {
     @GeneratedValue
     private Integer id;
     private String name;
-    @Column(unique = true)
-    private String surname;
-    private String password;
-    @OneToMany(mappedBy = "user")
-    private List<Card> cards;
+    private Integer money = 5000;
 
     public User() {
     }
 
-    public User(int id, String name, String surname, String password) {
+    public User(String name) {
         super();
-        this.id = id;
         this.name = name;
-        this.surname = surname;
-        this.password = password;
     }
 
     public Integer getId() {
@@ -42,28 +35,12 @@ public class User {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public Integer getMoney() {
+        return money;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getHashPassword() {
-        return password;
-    }
-
-    public void setHashPassword(String hashPassword) {
-        this.password = hashPassword;
-    }
-
-    public List<Card> getCards() {
-        return cards;
-    }
-
-    public void setCards(List<Card> cards) {
-        this.cards = cards;
+    public void setMoney(Integer money) {
+        this.money = money;
     }
 
     @Override
@@ -71,9 +48,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", password='" + password + '\'' +
-                ", cards=" + cards +
+                ", money='" + money + '\'' +
                 '}';
     }
 }

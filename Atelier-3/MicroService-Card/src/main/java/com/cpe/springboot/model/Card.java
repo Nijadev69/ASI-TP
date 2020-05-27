@@ -19,16 +19,13 @@ public class Card {
     private int defence;
     private String imgUrl;
     private boolean onSale = true;
-
-    @ManyToOne()
-    @JoinColumn(name = "user_id", nullable = true)
-    private User user;
+    private int userId;
 
     public Card() {
 
     }
 
-    public Card(int id, String name, String description, String family, int hp, int energy, int attack, int defence, String imgUrl, boolean onSale) {
+    public Card(int id, String name, String description, String family, int hp, int energy, int attack, int defence, String imgUrl, boolean onSale, int userId) {
         super();
         this.id = id;
         this.name = name;
@@ -40,6 +37,7 @@ public class Card {
         this.defence = defence;
         this.imgUrl = imgUrl;
         this.onSale = onSale;
+        this.userId = userId;
     }
 
     public Integer getId() {
@@ -122,6 +120,14 @@ public class Card {
         this.onSale = onSale;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "Card{" +
@@ -135,6 +141,7 @@ public class Card {
                 ", defence=" + defence +
                 ", imgUrl='" + imgUrl + '\'' +
                 ", onSale=" + onSale +
+                ", userId=" + userId +
                 '}';
     }
 }

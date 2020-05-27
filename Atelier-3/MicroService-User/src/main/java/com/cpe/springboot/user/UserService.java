@@ -34,16 +34,4 @@ public class UserService {
         }
     }
 
-    /*
-     * Réucpère un utilisateur par son surname
-     */
-    public User getUserBySurname(String surname) {
-        Optional<User> userOpt = userRepository.findBySurname(surname);
-
-        if (userOpt.isPresent()) {
-            return userOpt.get();
-        }else {
-            return null;
-        }
-    }
 }
