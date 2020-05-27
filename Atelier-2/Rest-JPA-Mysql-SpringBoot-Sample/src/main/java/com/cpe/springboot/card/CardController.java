@@ -2,6 +2,8 @@ package com.cpe.springboot.card;
 
 import com.cpe.springboot.model.Card;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +36,16 @@ public class CardController {
         List<Card> lC = cService.getCards();
 
         return lC;
+    }
+
+    @RequestMapping(method= RequestMethod.PATCH,value="/buyCard/{name}")
+    public ResponseEntity buyCard(@PathVariable String name) {
+        Card c = cService.getCardByName(name);
+
+        c.setOnSale(false);
+        cService.updateCard(c);
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 }
