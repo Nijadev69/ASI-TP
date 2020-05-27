@@ -18,7 +18,7 @@ public class CardController {
     CardService cService;
 
     //Route d'accès à une carte par son Id
-    @RequestMapping(method= RequestMethod.GET,value="/card/{id}")
+    @RequestMapping(method= RequestMethod.GET,value="/id/{id}")
     public Card getCard(@PathVariable String id) {
         Card c = cService.getCard(Integer.valueOf(id));
 
@@ -26,7 +26,7 @@ public class CardController {
     }
 
     //Route d'accès à une carte par son nom
-    @RequestMapping(method= RequestMethod.GET,value="/cardName/{name}")
+    @RequestMapping(method= RequestMethod.GET,value="/by/{name}")
     public Card getCardByName(@PathVariable String name) {
         Card c = cService.getCardByName(name);
 
@@ -34,7 +34,7 @@ public class CardController {
     }
 
     //Route d'accès aux cartes
-    @RequestMapping(method= RequestMethod.GET,value="/cards")
+    @RequestMapping(method= RequestMethod.GET,value="/all")
     public List<Card> getCards() {
         List<Card> lC = cService.getCards();
 
@@ -42,7 +42,7 @@ public class CardController {
     }
 
     //Vend une carte
-    @RequestMapping(method= RequestMethod.PATCH,value="/card/{name}/sell")
+    @RequestMapping(method= RequestMethod.PATCH,value="/sell/{name}")
     public ResponseEntity getCards(@PathVariable String name) {
         Card card = cService.getCardByName(name);
 
@@ -53,7 +53,7 @@ public class CardController {
     }
 
     //Achète une carte
-    @RequestMapping(method= RequestMethod.PATCH,value="/buyCard/{name}")
+    @RequestMapping(method= RequestMethod.PATCH,value="/buy/{name}")
     public ResponseEntity buyCard(@PathVariable String name) {
         Card c = cService.getCardByName(name);
 
@@ -62,4 +62,6 @@ public class CardController {
 
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    //get carte selon userId url = "/cards/" + JSON.parse(sessionStorage.getItem('user')).id + "/list";
 }
