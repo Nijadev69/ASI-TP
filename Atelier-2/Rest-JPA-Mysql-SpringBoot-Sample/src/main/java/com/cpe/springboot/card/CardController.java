@@ -2,10 +2,7 @@ package com.cpe.springboot.card;
 
 import com.cpe.springboot.model.Card;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,4 +33,11 @@ public class CardController {
         return lC;
     }
 
+    @RequestMapping(method= RequestMethod.PATCH,value="/card/{name}/sell")
+    public Card getCards(@PathVariable String name) {
+        Card card = cService.getCardByName(name);
+        card.setOnSale(true);
+
+        return card;
+    }
 }

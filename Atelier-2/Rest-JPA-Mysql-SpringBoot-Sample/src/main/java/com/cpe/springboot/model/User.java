@@ -1,7 +1,7 @@
 package com.cpe.springboot.model;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class User {
@@ -12,9 +12,8 @@ public class User {
     @Column(unique = true)
     private String surname;
     private String password;
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private Set<Card> cards;
+    @OneToMany(mappedBy = "user")
+    private List<Card> cards;
 
     public User() {
     }
@@ -59,6 +58,14 @@ public class User {
         this.password = hashPassword;
     }
 
+    public List<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(List<Card> cards) {
+        this.cards = cards;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -66,6 +73,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", password='" + password + '\'' +
+                ", cards=" + cards +
                 '}';
     }
 }

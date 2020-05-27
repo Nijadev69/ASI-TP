@@ -18,9 +18,9 @@ public class Card {
     private int attack;
     private int defence;
     private String imgUrl;
-    private boolean onSale;
+    private boolean onSale = true;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @ManyToOne()
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
 

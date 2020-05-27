@@ -1,6 +1,7 @@
 package com.cpe.springboot.user;
 
 import com.cpe.springboot.dto.UserDTO;
+import com.cpe.springboot.model.Card;
 import com.cpe.springboot.model.JsonResponse;
 import com.cpe.springboot.model.LoginForm;
 import com.cpe.springboot.model.User;
@@ -11,12 +12,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 @RestController
 public class UserController {
     @Autowired
     UserService uService;
 
+    /*
+     * Fonction permettant d'enregistrer un nouvel utilisateur en base de données
+     * Utilise un UserDTO afin de ne pas se soucier des champs non renseignés dans le model User
+     */
     @RequestMapping(method= RequestMethod.POST,value="/user")
     public ResponseEntity addUser(@RequestBody UserDTO userDTO) throws NoSuchAlgorithmException {
         User user = new User();
@@ -58,6 +64,13 @@ public class UserController {
         User u=uService.getUserById(Integer.valueOf(id));
 
         return u;
+    }
+
+    @RequestMapping(method=RequestMethod.GET,value="/user/{id}/cards")
+    public List<Card> getCards(@PathVariable String id) {
+        User u=uService.getUserById(Integer.valueOf(id));
+
+        return u.getCards();
     }
 
 }
