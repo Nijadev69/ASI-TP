@@ -13,12 +13,18 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+    /*
+     * Enregistre un nouvel utilisateur
+     */
     public User addUser(User user) {
         User addedUser = userRepository.save(user);
 
         return addedUser;
     }
 
+    /*
+     * Récupère un utilisateur par son id
+     */
     public User getUserById(int id) {
         Optional<User> userOpt = userRepository.findById(id);
 
@@ -29,6 +35,9 @@ public class UserService {
         }
     }
 
+    /*
+     * Réucpère un utilisateur par son surname
+     */
     public User getUserBySurname(String surname) {
         Optional<User> userOpt = userRepository.findBySurname(surname);
 

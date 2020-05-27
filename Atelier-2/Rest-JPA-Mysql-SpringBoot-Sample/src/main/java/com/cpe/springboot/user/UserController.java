@@ -34,6 +34,10 @@ public class UserController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    /*
+     * Fonction appelée pour identifier un utilisateur et permettre son authentification
+     * Utilise le model LoginForm pour récupérer les paramètres du formulaire
+     */
     @RequestMapping(method= RequestMethod.POST, value="/user/connect")
     public JsonResponse getUser(@RequestBody LoginForm loginForm) throws NoSuchAlgorithmException {
         User u=uService.getUserBySurname(loginForm.getSurname());
@@ -50,15 +54,9 @@ public class UserController {
         return res;
     }
 
-    @RequestMapping(method= RequestMethod.GET,value="/user")
-    public User getUser(@RequestBody String surname, @RequestBody String password) throws Exception {
-        User u = uService.getUserBySurname(surname);
-        if (u.getHashPassword().equals(password)) {
-            throw new Exception("Invalid credentials");
-        }
-        return u;
-    }
-
+    /*
+     * Récupère un utilisateur en fonction de son id
+     */
     @RequestMapping(method=RequestMethod.GET,value="/user/{id}")
     public User getUserByID(@PathVariable String id) {
         User u=uService.getUserById(Integer.valueOf(id));
@@ -66,6 +64,9 @@ public class UserController {
         return u;
     }
 
+    /*
+     * Récupère les cartes d'un utilisateur
+     */
     @RequestMapping(method=RequestMethod.GET,value="/user/{id}/cards")
     public List<Card> getCards(@PathVariable String id) {
         User u=uService.getUserById(Integer.valueOf(id));
