@@ -17,6 +17,7 @@ public class CardController {
     @Autowired
     CardService cService;
 
+    //Route d'accès à une carte par son Id
     @RequestMapping(method= RequestMethod.GET,value="/card/{id}")
     public Card getCard(@PathVariable String id) {
         Card c = cService.getCard(Integer.valueOf(id));
@@ -24,6 +25,7 @@ public class CardController {
         return c;
     }
 
+    //Route d'accès à une carte par son nom
     @RequestMapping(method= RequestMethod.GET,value="/cardName/{name}")
     public Card getCardByName(@PathVariable String name) {
         Card c = cService.getCardByName(name);
@@ -31,6 +33,7 @@ public class CardController {
         return c;
     }
 
+    //Route d'accès aux cartes
     @RequestMapping(method= RequestMethod.GET,value="/cards")
     public List<Card> getCards() {
         List<Card> lC = cService.getCards();
@@ -38,6 +41,7 @@ public class CardController {
         return lC;
     }
 
+    //Vend une carte
     @RequestMapping(method= RequestMethod.PATCH,value="/card/{name}/sell")
     public ResponseEntity getCards(@PathVariable String name) {
         Card card = cService.getCardByName(name);
@@ -48,6 +52,7 @@ public class CardController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    //Achète une carte
     @RequestMapping(method= RequestMethod.PATCH,value="/buyCard/{name}")
     public ResponseEntity buyCard(@PathVariable String name) {
         Card c = cService.getCardByName(name);

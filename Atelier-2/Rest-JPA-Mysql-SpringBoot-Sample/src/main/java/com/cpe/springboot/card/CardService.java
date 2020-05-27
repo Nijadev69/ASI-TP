@@ -13,6 +13,7 @@ public class CardService {
     @Autowired
     CardRepository cRepository;
 
+    //Récupère un carte par son Id
     public Card getCard(int id) {
         Optional<Card> cOpt = cRepository.findById(id);
         if (cOpt.isPresent()) {
@@ -22,6 +23,7 @@ public class CardService {
         }
     }
 
+    //Récupère une carte par son nom
     public Card getCardByName(String name) {
         Optional<Card> cOpt = cRepository.findByName(name);
 
@@ -32,10 +34,12 @@ public class CardService {
         }
     }
 
+    //Récupère les cartes dans la BD
     public List<Card> getCards() {
         return cRepository.findAll();
     }
 
+    //Modifie une carte dans la BD
     public Card updateCard(Card c) {
         Card card = cRepository.save(c);
 
