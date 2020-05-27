@@ -33,7 +33,7 @@ public class UserController {
             user.setHashPassword(Utils.hashPassword(userDTO.getPassword()));
 
             uService.addUser(user);
-            /*
+
             final String uri = "http://localhost:8081/add";
 
             RestTemplate restTemplate = new RestTemplate();
@@ -42,7 +42,7 @@ public class UserController {
 
             HttpEntity<String> request = new HttpEntity(userDTO.toString(), headers);
             URI locationHeader = restTemplate.postForLocation(new URI(uri), request);
-            */
+
             resp = new ResponseEntity(HttpStatus.OK);
         } else {
             resp = new ResponseEntity(HttpStatus.BAD_REQUEST);
