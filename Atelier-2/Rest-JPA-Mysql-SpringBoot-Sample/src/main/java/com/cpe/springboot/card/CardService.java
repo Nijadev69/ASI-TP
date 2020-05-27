@@ -36,4 +36,10 @@ public class CardService {
         return cRepository.findAll();
     }
 
+    public Card updateCard(Card c) {
+        Card card = cRepository.save(c);
+
+        return card;
+    }
+
 }

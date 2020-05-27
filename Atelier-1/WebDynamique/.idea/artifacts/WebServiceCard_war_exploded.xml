@@ -1,0 +1,50 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="WebServiceCard:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/WebServiceCard_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="WebServiceCard" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="aopalliance-repackaged-2.5.0-b36.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="cdi-api-1.1.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="el-api-2.2.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="hk2-api-2.5.0-b36.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="hk2-locator-2.5.0-b36.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="hk2-utils-2.5.0-b36.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="javassist-3.20.0-GA.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="javax.annotation-api-1.2.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="javax.inject-1.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="javax.inject-2.5.0-b36.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="javax.json-1.0.4.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="javax.json-api-1.1.0-M1.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="javax.json.bind-api-1.0.0-M2.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="javax.ws.rs-api-2.1-m07.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="jaxb-api-2.2.7.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="jersey-client.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="jersey-common.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="jersey-container-servlet-core.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="jersey-container-servlet.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="jersey-hk2.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="jersey-media-jaxb.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="jersey-media-json-binding.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="jersey-media-sse.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="jersey-server.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="jsr250-api-1.0.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="org.osgi.core-4.2.0.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="osgi-resource-locator-1.0.1.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="persistence-api-1.0.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="validation-api-1.1.0.Final.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="yasson-1.0.0-M2.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="mysql-connector-java-5.1.45-bin.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="jackson-databind-2.3.1.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="jackson-annotations-2.6.0.jar" module-name="WebServiceCard" />
+          <element id="library" level="module" name="jackson-core-2.6.1.jar" module-name="WebServiceCard" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="WebServiceCard/web/Web" />
+    </root>
+  </artifact>
+</component>

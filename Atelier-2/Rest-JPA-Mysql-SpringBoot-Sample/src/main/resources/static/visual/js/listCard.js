@@ -6,22 +6,18 @@ $(document ).ready(function(){
     $.ajax({
         url: urlAPI,
         type: "GET",
-        data: JSON.stringify({
-            surname: surname,
-            password: password,
-        }),
         headers: {
             'Accept':'application/json',
             'Content-Type':'application/json'
         },
         success: function(data, status){
-            console.log(data);
+            data.forEach(function(card){
+                if(card.onSale == true){
+                    addCardToList("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/DC_Comics_logo.png/280px-DC_Comics_logo.png",card.family,card.imgUrl,card.name,card.description,card.hp,card.energy,card.attack,card.defence,100);
+                }
+            })
         }
     });
-
-    for(i=0;i<2;i++){
-        addCardToList("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/DC_Comics_logo.png/280px-DC_Comics_logo.png","DC comics","http://www.guinnessworldrecords.com/images/superlative/superheroes/GWR-Superheroes-SUPERMAN.svg","SUPERMAN","The origin story of Superman relates that he was born Kal-El on the planet Krypton, before being rocketed to Earth as an infant by his scientist father Jor-El, moments before Krypton's destruction. Discovered and adopted by a farm couple from Kansas, the child is raised as Clark Kent and imbued with a strong moral compass. Early in his childhood, he displays various superhuman abilities, which, upon reaching maturity, he resolves to use for the benefit of humanity through a 'Superman' identity.",50,100,17,80,100);
-    }
 
 });
 
@@ -44,7 +40,6 @@ function fillCurrentCard(imgUrlFamily,familyName,imgUrl,name,description,hp,ener
 
 
 function addCardToList(imgUrlFamily,familyName,imgUrl,name,description,hp,energy,attack,defence,price){
-    
     content="\
     <td> \
     <img  class='ui avatar image' src='"+imgUrl+"'> <span>"+name+" </span> \
@@ -58,14 +53,27 @@ function addCardToList(imgUrlFamily,familyName,imgUrl,name,description,hp,energy
     <td>"+price+"$</td>\
     <td>\
         <div class='ui vertical animated button' tabindex='0'>\
-            <div class='hidden content'>Sell</div>\
-    <div class='visible content'>\
-        <i class='shop icon'></i>\
+            <div class='hidden content' onclick=\"buyCard('" + name + "')\">Buy</div>\
+        <div class='visible content'>\
+            <i class='shop icon'></i>\
     </div>\
     </div>\
     </td>";
     
     $('#cardListId tr:last').after('<tr>'+content+'</tr>');
-    
-    
 };
+
+function buyCard(name){
+    $.ajax({
+        url: "/buyCard/" + name,
+        type: "PATCH",
+        headers: {
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+        },
+        success : function(response, textStatus, jqXhr) {
+            console.log("Card Successfully Patched!");
+            location.reload();
+        },
+    });
+}
