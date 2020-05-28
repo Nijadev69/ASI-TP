@@ -83,7 +83,8 @@ function putCardOnSale() {
             'Content-Type':'application/json'
         },
         success: function(data, status){
-            alert('Carte mise en vente');
+            console.log("Card Successfully Patched!");
+            location.reload();
         }
     });
 }
