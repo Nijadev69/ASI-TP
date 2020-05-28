@@ -11,7 +11,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.Assert.assertTrue;
 
@@ -26,6 +25,7 @@ public class UserRepositoryTest {
 
     @Before
     public void setUp() {
+        System.out.println("[BEFORE TEST] Creating users");
         users.add(new User(100, "Test0", "pass0"));
         users.add(new User(101, "Test1", "pass1"));
         users.add(new User(102, "Test2", "pass2"));
@@ -33,12 +33,14 @@ public class UserRepositoryTest {
 
     @After
     public void cleanUp() {
+        System.out.println("[AFTER TEST] Deleting users");
         for(User u: users)
             userRepository.delete(u);
     }
 
     @Test
     public void saveUser() {
+        System.out.println("[TEST] Saving users");
         for(User u: users) {
             userRepository.save(u);
             assertTrue(true);
@@ -47,6 +49,7 @@ public class UserRepositoryTest {
 
     @Test
     public void getUser() {
+        System.out.println("[TEST] Getting user 100 and user 101");
         User u0 = userRepository.findById(100).get();
         assertTrue(u0.getId() == 100);
         assertTrue(u0.getSurname().equals("Test0"));
