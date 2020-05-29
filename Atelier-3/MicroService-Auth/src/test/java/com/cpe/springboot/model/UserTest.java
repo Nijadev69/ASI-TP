@@ -19,7 +19,7 @@ public class UserTest {
     public void displayUser() {
         System.out.println("[TEST] Testing display user");
         User u = new User(1, "Nico", "test");
-        String expectedResult = "User{id=1, surname='Nico', password='test'}";
+        String expectedResult = "User{surname='Nico', password='test'}";
         assertTrue(u.toString().equals(expectedResult));
     }
 

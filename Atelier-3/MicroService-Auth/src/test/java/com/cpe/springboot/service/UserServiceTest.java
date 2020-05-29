@@ -3,12 +3,12 @@ package com.cpe.springboot.service;
 import com.cpe.springboot.model.User;
 import com.cpe.springboot.user.UserRepository;
 import com.cpe.springboot.user.UserService;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -17,16 +17,15 @@ import java.util.Optional;
 
 import static org.junit.Assert.assertTrue;
 
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = UserService.class)
 public class UserServiceTest {
 
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
 
     @MockBean
-    UserService userService;
+    UserRepository userRepository;
 
     User user;
 
@@ -35,24 +34,27 @@ public class UserServiceTest {
         user = new User(100, "Test0", "pass0");
     }
 
+    @After
+    public void cleanUp() {
+        user = null;
+    }
+
     @Test
     public void getUser() {
         Mockito.when(
-                userRepository.findById(Mockito.any())
-        ).thenReturn(Optional.ofNullable(user));
-        User userInfos = userService.getUserById(1);
-        assertTrue(userInfos.toString().equals(user.toString()));
-
-        Mockito.when(
                 userRepository.findBySurname(Mockito.any())
         ).thenReturn(Optional.ofNullable(user));
-        userInfos = userService.getUserBySurname("Test0");
+        User userInfos = userService.getUserBySurname("Test1");
         assertTrue(userInfos.toString().equals(user.toString()));
     }
 
     @Test
     public void addUser() {
-
+        Mockito.when(
+                userRepository.save(Mockito.any(User.class))
+        ).thenReturn(user);
+        User userInfos = userService.addUser(new User("Test1", "pass1"));
+        assertTrue(userInfos.toString().equals(user.toString()));
     }
 
 }

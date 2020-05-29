@@ -24,7 +24,7 @@ public class UserController {
      * Utilise un UserDTO afin de ne pas se soucier des champs non renseignés dans le model User
      */
     @RequestMapping(method= RequestMethod.POST,value="/register")
-    public ResponseEntity addUser(@RequestBody UserDTO userDTO) throws Exception {
+    public ResponseEntity registerUser(@RequestBody UserDTO userDTO) throws Exception {
         ResponseEntity resp;
         User user = new User();
 
@@ -56,7 +56,7 @@ public class UserController {
      * Utilise le model LoginForm pour récupérer les paramètres du formulaire
      */
     @RequestMapping(method= RequestMethod.POST, value="/connect")
-    public JsonResponse getUser(@RequestBody LoginForm loginForm) throws NoSuchAlgorithmException {
+    public JsonResponse connectUser(@RequestBody LoginForm loginForm) throws NoSuchAlgorithmException {
         User u=uService.getUserBySurname(loginForm.getSurname());
         JsonResponse res;
 

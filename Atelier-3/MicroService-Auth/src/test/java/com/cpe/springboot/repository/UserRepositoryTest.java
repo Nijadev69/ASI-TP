@@ -54,10 +54,12 @@ public class UserRepositoryTest {
 
     @Test
     public void getUser() {
+        System.out.println("[TEST] Getting user with surname 'Test1'");
+
         User u1 = userRepository.findBySurname("Test1").get();
         assertTrue(u1.getSurname().equals("Test1"));
         assertTrue(u1.getPassword().equals("pass1"));
-        String expectedU1ToString = "User{id=101, surname='Test1', password='pass1'}";
+        String expectedU1ToString = "User{surname='Test1', password='pass1'}";
         assertTrue(u1.toString().equals(expectedU1ToString));
     }
 
