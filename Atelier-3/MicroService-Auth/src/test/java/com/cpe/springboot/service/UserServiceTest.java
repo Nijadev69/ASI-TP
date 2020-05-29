@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 import static org.junit.Assert.assertTrue;
 
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = UserService.class)
 public class UserServiceTest {
@@ -44,7 +46,7 @@ public class UserServiceTest {
         Mockito.when(
                 userRepository.findBySurname(Mockito.any())
         ).thenReturn(Optional.ofNullable(user));
-        userInfos = userService.getUserBySurname("Nico");
+        userInfos = userService.getUserBySurname("Test0");
         assertTrue(userInfos.toString().equals(user.toString()));
     }
 
