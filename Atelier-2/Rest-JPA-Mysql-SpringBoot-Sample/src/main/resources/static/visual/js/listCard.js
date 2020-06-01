@@ -71,6 +71,9 @@ function buyCard(name){
             'Accept':'application/json',
             'Content-Type':'application/json'
         },
+        data: JSON.stringify({
+            userId: JSON.parse(sessionStorage.getItem('user')).id
+        }),
         success : function(response, textStatus, jqXhr) {
             console.log("Card Successfully Patched!");
             location.reload();

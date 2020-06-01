@@ -31,7 +31,7 @@ public class UserServiceTest {
 
     @Before
     public void setUp() {
-        user = new User(100, "Test0", "pass0");
+        user = new User(100,"Test0", "pass0");
     }
 
     @After
@@ -42,9 +42,15 @@ public class UserServiceTest {
     @Test
     public void getUser() {
         Mockito.when(
-                userRepository.findBySurname(Mockito.any())
+                userRepository.findBySurname(Mockito.anyString())
         ).thenReturn(Optional.ofNullable(user));
         User userInfos = userService.getUserBySurname("Test1");
+        assertTrue(userInfos.toString().equals(user.toString()));
+
+        Mockito.when(
+                userRepository.findById(Mockito.anyInt())
+        ).thenReturn(Optional.ofNullable(user));
+        userInfos = userService.getUserById(1);
         assertTrue(userInfos.toString().equals(user.toString()));
     }
 

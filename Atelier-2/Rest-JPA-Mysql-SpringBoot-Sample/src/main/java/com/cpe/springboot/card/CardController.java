@@ -57,6 +57,7 @@ public class CardController {
     public ResponseEntity buyCard(@PathVariable String name) {
         Card c = cService.getCardByName(name);
 
+        // TODO : Ajouter le nouvel acquéreur et décrémenter l'argent
         c.setOnSale(false);
         cService.updateCard(c);
 

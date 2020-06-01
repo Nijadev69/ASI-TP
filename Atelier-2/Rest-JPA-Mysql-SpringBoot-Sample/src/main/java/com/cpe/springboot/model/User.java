@@ -15,6 +15,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Card> cards;
 
+    @Column(nullable = true)
+    private double money = 5000;
+
     public User() {
     }
 
@@ -64,6 +67,14 @@ public class User {
 
     public void setCards(List<Card> cards) {
         this.cards = cards;
+    }
+
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
     }
 
     @Override

@@ -19,6 +19,8 @@ public class Card {
     private int defence;
     private String imgUrl;
     private boolean onSale = true;
+    @Column(nullable = true)
+    private double price = 100;
 
     @ManyToOne()
     @JoinColumn(name = "user_id", nullable = true)
@@ -120,6 +122,14 @@ public class Card {
 
     public void setOnSale(boolean onSale) {
         this.onSale = onSale;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override
