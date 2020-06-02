@@ -22,7 +22,7 @@ $(document ).ready(function(){
         url: urlAPI,
         type: "GET",
         success: function(data, status){
-            $('#cash').text(data.data.money + '$');
+            $('#cash').text(data.data.money);
         }
     });
 });

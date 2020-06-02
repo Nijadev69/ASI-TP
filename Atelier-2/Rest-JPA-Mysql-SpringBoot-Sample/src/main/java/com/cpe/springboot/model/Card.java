@@ -132,6 +132,14 @@ public class Card {
         this.price = price;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getUserId(){
+        return user.getId();
+    }
+
     @Override
     public String toString() {
         return "Card{" +
@@ -145,6 +153,7 @@ public class Card {
                 ", defence=" + defence +
                 ", imgUrl='" + imgUrl + '\'' +
                 ", onSale=" + onSale +
+                ", user=" + user +
                 '}';
     }
 }

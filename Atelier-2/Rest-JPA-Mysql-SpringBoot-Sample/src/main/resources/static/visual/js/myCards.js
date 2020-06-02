@@ -5,6 +5,13 @@ var selectedCard;
 $(document ).ready(function(){
     var urlAPI = "/user/" + JSON.parse(sessionStorage.getItem('user')).id + "/cards";
 
+    if(sessionStorage.getItem('user')) {
+        let user = JSON.parse(sessionStorage.getItem('user'));
+        $('#userNameId').text(user.surname);
+    } else {
+        window.location.href = '/visual/login.html';
+    }
+
     $.ajax({
         url: urlAPI,
         type: "GET",
@@ -15,8 +22,16 @@ $(document ).ready(function(){
         success: function(data, status){
             data.forEach(function(card) {
                 cards = data;
-                addCardToList(imgUrlFamily, card.family, card.imgUrl, card.name, card. description, card.hp, card.energy, card.attack, card.defence, 100);
+                addCardToList(imgUrlFamily, card.family, card.imgUrl, card.name, card. description, card.hp, card.energy, card.attack, card.defence, card.price);
             });
+        }
+    });
+
+    $.ajax({
+        url: "/user/" + JSON.parse(sessionStorage.getItem('user')).id + '/money',
+        type: "GET",
+        success: function(data, status){
+            $('#cash').text(data.data.money);
         }
     });
 });
@@ -42,7 +57,7 @@ function changeSelectedCard(name) {
     selectedCard = name;
     cards.forEach(function(card) {
        if(card.name == name) {
-           fillCurrentCard(imgUrlFamily, card.family, card.imgUrl, card.name, card.description, card.hp, card.energy, card.attack, card.defence, 100);
+           fillCurrentCard(imgUrlFamily, card.family, card.imgUrl, card.name, card.description, card.hp, card.energy, card.attack, card.defence, card.price);
        }
     });
 }
@@ -52,7 +67,7 @@ function addCardToList(imgUrlFamily,familyName,imgUrl,name,description,hp,energy
     content="\
     <td> \
     <img  class='ui avatar image' src='"+imgUrl+"'> <span>"+name+" </span> \
-   </td> \
+    </td> \
     <td>"+description+"</td> \
     <td>"+familyName+"</td> \
     <td>"+hp+"</td> \
