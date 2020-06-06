@@ -6,6 +6,9 @@ import java.security.NoSuchAlgorithmException;
 
 public class Utils {
 
+    /*
+     * Fonction permettant de réaliser et retourner un hash d'une chaîne
+     */
     public static String hashPassword(String pass) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] hashPassword = digest.digest(pass.getBytes(StandardCharsets.UTF_8));

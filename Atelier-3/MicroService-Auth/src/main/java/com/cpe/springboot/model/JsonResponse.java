@@ -3,6 +3,10 @@ package com.cpe.springboot.model;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+ * Modèle créé pour retourner des réponses JSON contenant un message en cas d'erreur, la data si besoin
+ * et un booléen error pour savoir si tout s'est bien passé ou non
+ */
 public class JsonResponse {
 
     private boolean error;
