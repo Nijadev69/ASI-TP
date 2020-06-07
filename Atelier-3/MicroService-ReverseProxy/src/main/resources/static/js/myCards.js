@@ -5,6 +5,13 @@ var selectedCard;
 $(document ).ready(function(){
     var urlAPI = "/cards/" + JSON.parse(sessionStorage.getItem('user')).id + "/list";
 
+    if(sessionStorage.getItem('user')) {
+        let user = JSON.parse(sessionStorage.getItem('user'));
+        $('#userNameId').text(user.surname);
+    } else {
+        window.location.href = '/visual/login.html';
+    }
+
     $.ajax({
         url: urlAPI,
         type: "GET",
