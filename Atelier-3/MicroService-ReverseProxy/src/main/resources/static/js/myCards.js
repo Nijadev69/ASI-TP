@@ -26,6 +26,19 @@ $(document ).ready(function(){
             });
         }
     });
+
+    urlAPI = "/users/" + JSON.parse(sessionStorage.getItem('user')).id;
+    $.ajax({
+        url: urlAPI,
+        type: "GET",
+        headers: {
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+        },
+        success: function(data, status){
+            $('#money-value').text(data.money + '$');
+        }
+    });
 });
 
 
