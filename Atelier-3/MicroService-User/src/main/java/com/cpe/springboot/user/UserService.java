@@ -3,7 +3,10 @@ package com.cpe.springboot.user;
 import com.cpe.springboot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,13 +28,19 @@ public class UserService {
      * Récupère un utilisateur par son id
      */
     public User getUserById(int id) {
-        Optional<User> userOpt = userRepository.findById(id);
+            return userRepository.findOne(id);
+    }
 
-        if (userOpt.isPresent()) {
-            return userOpt.get();
-        }else {
+    /*
+     * Récupère une liste des utilisateurs par leurs noms
+     */
+    public List<User> getUsersByName(String name) {
+        Assert.notNull(name, "Le nom ne peut pas être null.");
+        List<User> users = userRepository.findByNameIgnoreCase(name);
+        if (!CollectionUtils.isEmpty(users)) {
+            return users;
+        } else {
             return null;
         }
     }
-
 }
