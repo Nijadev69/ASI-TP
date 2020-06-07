@@ -3,6 +3,13 @@ var urlAPI = "/cards"
 $(document ).ready(function(){
     fillCurrentCard("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/DC_Comics_logo.png/280px-DC_Comics_logo.png","DC comics","http://www.guinnessworldrecords.com/images/superlative/superheroes/GWR-Superheroes-SUPERMAN.svg","SUPERMAN","The origin story of Superman relates that he was born Kal-El on the planet Krypton, before being rocketed to Earth as an infant by his scientist father Jor-El, moments before Krypton's destruction. Discovered and adopted by a farm couple from Kansas, the child is raised as Clark Kent and imbued with a strong moral compass. Early in his childhood, he displays various superhuman abilities, which, upon reaching maturity, he resolves to use for the benefit of humanity through a 'Superman' identity.",50,100,17,8,100);
 
+    if(sessionStorage.getItem('user')) {
+        let user = JSON.parse(sessionStorage.getItem('user'));
+        $('#userNameId').text(user.surname);
+    } else {
+        window.location.href = '/visual/login.html';
+    }
+
     $.ajax({
         url: urlAPI,
         type: "GET",
@@ -13,9 +20,17 @@ $(document ).ready(function(){
         success: function(data, status){
             data.forEach(function(card){
                 if(card.onSale == true){
-                    addCardToList("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/DC_Comics_logo.png/280px-DC_Comics_logo.png",card.family,card.imgUrl,card.name,card.description,card.hp,card.energy,card.attack,card.defence,100);
+                    addCardToList("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/DC_Comics_logo.png/280px-DC_Comics_logo.png",card.family,card.imgUrl,card.name,card.description,card.hp,card.energy,card.attack,card.defence,card.price);
                 }
             })
+        }
+    });
+
+    $.ajax({
+        url: "/user/" + JSON.parse(sessionStorage.getItem('user')).id + '/money',
+        type: "GET",
+        success: function(data, status){
+            $('#cash').text(data.data.money);
         }
     });
 
@@ -65,12 +80,15 @@ function addCardToList(imgUrlFamily,familyName,imgUrl,name,description,hp,energy
 
 function buyCard(name){
     $.ajax({
-        url: "/buyCard/" + name,
+        url: "/buyCard/" + name + "/" + JSON.parse(sessionStorage.getItem('user')).id,
         type: "PATCH",
         headers: {
             'Accept':'application/json',
             'Content-Type':'application/json'
         },
+        data: JSON.stringify({
+            userId: JSON.parse(sessionStorage.getItem('user')).id
+        }),
         success : function(response, textStatus, jqXhr) {
             console.log("Card Successfully Patched!");
             location.reload();

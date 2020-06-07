@@ -8,14 +8,22 @@ $(document ).ready(function(){
 
     $("#playButtonId").click(function(){
         alert("Play button clicked ");
-        //TO DO
-    });    
+    });
     $("#buyButtonId").click(function(){
         window.location.href = '/visual/cardOnSale.html';
     });    
     $("#sellButtonId").click(function(){
-        alert("Sell button clicked ");
-        //TO DO
-    });    
+        window.location.href = '/visual/myCards.html';
+    });
+
+    var urlAPI = "/user/" + JSON.parse(sessionStorage.getItem('user')).id + '/money';
+
+    $.ajax({
+        url: urlAPI,
+        type: "GET",
+        success: function(data, status){
+            $('#cash').text(data.data.money);
+        }
+    });
 });
 

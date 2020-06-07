@@ -15,6 +15,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Card> cards;
 
+    @Column(nullable = true)
+    private double money = 5000;
+
     public User() {
     }
 
@@ -66,6 +69,14 @@ public class User {
         this.cards = cards;
     }
 
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -74,6 +85,7 @@ public class User {
                 ", surname='" + surname + '\'' +
                 ", password='" + password + '\'' +
                 ", cards=" + cards +
+                ", money=" + money +
                 '}';
     }
 }

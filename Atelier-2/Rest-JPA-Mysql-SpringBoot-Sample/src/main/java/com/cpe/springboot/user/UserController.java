@@ -74,4 +74,16 @@ public class UserController {
         return u.getCards();
     }
 
+    /*
+     * Récupère les cartes d'un utilisateur
+     */
+    @RequestMapping(method=RequestMethod.GET,value="/user/{id}/money")
+    public JsonResponse getMoney(@PathVariable String id) {
+        User u=uService.getUserById(Integer.valueOf(id));
+
+        JsonResponse res = new JsonResponse(false, "Getting money");
+        res.addData("money", u.getMoney());
+
+        return res;
+    }
 }

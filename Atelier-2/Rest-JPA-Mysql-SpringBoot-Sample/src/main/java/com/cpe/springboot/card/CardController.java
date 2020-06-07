@@ -1,6 +1,8 @@
 package com.cpe.springboot.card;
 
 import com.cpe.springboot.model.Card;
+import com.cpe.springboot.model.User;
+import com.cpe.springboot.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,9 @@ public class CardController {
 
     @Autowired
     CardService cService;
+
+    @Autowired
+    UserService uService;
 
     //Route d'accès à une carte par son Id
     @RequestMapping(method= RequestMethod.GET,value="/card/{id}")
@@ -53,10 +58,15 @@ public class CardController {
     }
 
     //Achète une carte
-    @RequestMapping(method= RequestMethod.PATCH,value="/buyCard/{name}")
-    public ResponseEntity buyCard(@PathVariable String name) {
+    @RequestMapping(method= RequestMethod.PATCH,value="/buyCard/{name}/{userId}")
+    public ResponseEntity buyCard(@PathVariable String name, @PathVariable String userId) {
         Card c = cService.getCardByName(name);
+        User uBuy = uService.getUserById(Integer.valueOf(userId));
+        User uSale = uService.getUserById(c.getUserId());
 
+        uSale.setMoney(uSale.getMoney() + c.getPrice());
+        uBuy.setMoney(uBuy.getMoney() - c.getPrice());
+        c.setUser(uBuy);
         c.setOnSale(false);
         cService.updateCard(c);
 
