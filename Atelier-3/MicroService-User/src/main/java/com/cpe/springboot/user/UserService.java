@@ -43,4 +43,11 @@ public class UserService {
             return null;
         }
     }
+
+    //Modifie un utilisateur dans la BD
+    public User updateUser(User u) {
+        User user = userRepository.save(u);
+
+        return user;
+    }
 }

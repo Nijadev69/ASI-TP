@@ -37,4 +37,32 @@ public class UserController {
         return u;
     }
 
+    /*
+     * update l'argent de l'utilisateur acheteur
+     */
+
+    @RequestMapping(method=RequestMethod.POST,value="/setMoneyBuy/{userId}/{price}")
+    public ResponseEntity setMoneyBuy(@PathVariable int userId, @PathVariable int price) {
+        User u = uService.getUserById(userId);
+
+        u.setMoney(u.getMoney()-price);
+        uService.updateUser(u);
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    /*
+     * update l'argent de l'utilisateur vendeur
+     */
+
+    @RequestMapping(method=RequestMethod.POST,value="/setMoneySell/{userId}/{price}")
+    public ResponseEntity setMoneySell(@PathVariable int userId, @PathVariable int price) {
+        User u = uService.getUserById(userId);
+
+        u.setMoney(u.getMoney()+price);
+        uService.updateUser(u);
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 }

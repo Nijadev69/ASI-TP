@@ -2,13 +2,15 @@ package com.cpe.springboot.card;
 
 import com.cpe.springboot.model.Card;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -54,13 +56,29 @@ public class CardController {
 
     //Achète une carte
     @RequestMapping(method= RequestMethod.PATCH,value="/buy/{name}/{userId}")
-    public ResponseEntity buyCard(@PathVariable String name, @PathVariable int userId) {
+    public ResponseEntity buyCard(@PathVariable String name, @PathVariable int userId) throws Exception {
         Card c = cService.getCardByName(name);
+
+        int oldUserId = c.getUserId();
 
         c.setOnSale(false);
         c.setUserId(userId);
 
         cService.updateCard(c);
+
+        final String uri = "http://localhost:8081/setMoneyBuy/" + userId + "/" + c.getPrice();
+        final String uri2 = "http://localhost:8081/setMoneySell/" + oldUserId + "/" + c.getPrice();
+
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+
+        HttpEntity<String> request = new HttpEntity(null, headers);
+        URI locationHeader = restTemplate.postForLocation(new URI(uri), request);
+
+        HttpEntity<String> request2 = new HttpEntity(null, headers);
+        URI locationHeader2 = restTemplate.postForLocation(new URI(uri2), request);
 
         return new ResponseEntity(HttpStatus.OK);
     }

@@ -20,6 +20,7 @@ public class Card {
     private String imgUrl;
     private boolean onSale = true;
     private int userId;
+    private double price = 100;
 
     public Card() {
 
@@ -126,6 +127,14 @@ public class Card {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override
